@@ -24,13 +24,20 @@ public class LimitedPlatformerMovement : MonoBehaviour
     
     private Vector2 moveInput;
     private bool jumpInput;
+    private bool _isJumping;
+
     
     private Rigidbody2D rb;
     private CapsuleCollider2D groundCheckCollider; 
-    [SerializeField] private Animator animator;
+
+    [SerializeField] private GameObject runAnimation;
+    [SerializeField] private SpriteRenderer runSprite;
+    [SerializeField] private GameObject idleAnimation;
+    [SerializeField] private SpriteRenderer idleSprite;
     
     void Awake()
     {
+        runAnimation.SetActive(false);
         rb = GetComponent<Rigidbody2D>();
         groundCheckCollider = GetComponent<CapsuleCollider2D>();
     }
@@ -46,14 +53,27 @@ public class LimitedPlatformerMovement : MonoBehaviour
             rb.linearVelocityY = jumpForce;
         }
 
-        if (IsGrounded() && moveInput == Vector2.zero)
+        if (moveInput.x < 0 && !runSprite.flipX)
         {
-            animator.enabled = false;
+            runSprite.flipX = true;
+            idleSprite.flipX = true;
+        }
+        if (moveInput.x > 0 && runSprite.flipX)
+        {
+            runSprite.flipX = false;
+            idleSprite.flipX = false;
         }
 
-        if (IsGrounded() && moveInput != Vector2.zero)
+        if (IsGrounded() && moveInput == Vector2.zero )
         {
-            animator.enabled = true;    
+            idleAnimation.SetActive(true);
+            runAnimation.SetActive(false);
+        }
+
+        if (IsGrounded() && moveInput != Vector2.zero )
+        {
+            runAnimation.SetActive(true);
+            idleAnimation.SetActive(false);
         }
         jumpInput = false; // only jump once for each press of the jump-button
     }
