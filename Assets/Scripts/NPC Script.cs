@@ -58,7 +58,7 @@ public class NPCScript : MonoBehaviour
         if (other.tag == "Player")
         {
             pratBubbla.SetActive(true);
-            pratBubbla.GetComponent<TMP_Text>().text = "hämta 1 mynt, pysen!";
+            pratBubbla.GetComponent<TMP_Text>().text = "hämta 3 mynt, pysen!";
             
             isTalking = true;
         }
