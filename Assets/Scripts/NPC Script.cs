@@ -55,10 +55,18 @@ public class NPCScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        
         if (other.tag == "Player")
         {
+            if (Globals.Coins >= 3)
+            {
+                pratBubbla.GetComponent<TMP_Text>().text = "Tack så mycket Lario";
+            }
+            else
+            {
+                pratBubbla.GetComponent<TMP_Text>().text = "hämta 3 mynt, Lario!";
+            }
             pratBubbla.SetActive(true);
-            pratBubbla.GetComponent<TMP_Text>().text = "hämta 3 mynt, pysen!";
             
             isTalking = true;
         }

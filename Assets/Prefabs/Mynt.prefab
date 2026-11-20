@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6347421048553797490}
   - component: {fileID: 665731548474166743}
   - component: {fileID: 8785113922865696789}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mynt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
