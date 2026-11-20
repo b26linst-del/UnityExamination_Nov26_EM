@@ -93,6 +93,7 @@ public class LimitedPlatformerMovement : MonoBehaviour
     
     public void OnMove(InputValue input)
     {
+        print("går!");
         moveInput = input.Get<Vector2>();
     }
     

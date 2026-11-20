@@ -15,4 +15,9 @@ public class MenuScript : MonoBehaviour
     {
         Globals.SwitchScene("Menu");
     }
+
+    public void Info()
+    {
+        Globals.SwitchScene("Info");
+    }
 }
