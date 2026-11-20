@@ -27,7 +27,7 @@ public class LimitedPlatformerMovement : MonoBehaviour
     
     private Rigidbody2D rb;
     private CapsuleCollider2D groundCheckCollider; 
-
+    [SerializeField] private Animator animator;
     
     void Awake()
     {
@@ -44,6 +44,16 @@ public class LimitedPlatformerMovement : MonoBehaviour
         if (jumpInput && IsGrounded())
         {
             rb.linearVelocityY = jumpForce;
+        }
+
+        if (IsGrounded() && moveInput == Vector2.zero)
+        {
+            animator.enabled = false;
+        }
+
+        if (IsGrounded() && moveInput != Vector2.zero)
+        {
+            animator.enabled = true;    
         }
         jumpInput = false; // only jump once for each press of the jump-button
     }
